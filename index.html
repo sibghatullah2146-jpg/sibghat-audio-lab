@@ -1,201 +1,149 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Audio Cutter - Cut Audio Online</title>
-
+    <meta name="theme-color" content="#080b14">
+    <meta name="description" content="Cut, trim and download audio online for free with Sibghat Audio Lab.">
+    <title>Audio Cutter Pro | Sibghat Audio Lab</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
     <header class="header">
-        <div class="logo">
-            <span class="logo-icon">🎵</span>
-            <span>Audio Cutter</span>
-        </div>
-
-        <p class="header-subtitle">
-            Cut and trim your audio online
-        </p>
+        <a class="logo" href="#" aria-label="Sibghat Audio Lab home">
+            <span class="logo-icon">♫</span>
+            <span>
+                Sibghat Audio Lab
+                <small>Audio tools made simple</small>
+            </span>
+        </a>
+        <span class="header-badge">Free Audio Tool</span>
     </header>
-
 
     <main class="main-container">
 
         <section class="hero-section">
-
-            <h1>
-                Cut Audio Online
-            </h1>
-
+            <span class="eyebrow">✦ Simple · Fast · Online</span>
+            <h1>Cut your audio.<br><span>Keep what matters.</span></h1>
             <p>
-                Upload your audio file and easily cut the part you need.
+                Trim your favorite songs, recordings and audio files in seconds.
+                Select the part you want and download your finished audio.
             </p>
+        </section>
 
+        <section class="upload-box" id="uploadBox">
+            <div class="upload-icon" aria-hidden="true">♫</div>
+            <h2>Upload your audio</h2>
+            <p>Drag and drop an audio file here, or choose a file from your device.</p>
 
-            <div class="upload-box" id="uploadBox">
+            <input
+                type="file"
+                id="audioFile"
+                accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac"
+            >
 
-                <div class="upload-icon">
-                    🎧
+            <button type="button" id="chooseButton" class="choose-button">
+                ↑ &nbsp; Choose Audio File
+            </button>
+
+            <p style="margin: 17px 0 0; font-size: 12px;">
+                MP3, WAV, M4A, OGG and other browser-supported audio formats
+            </p>
+        </section>
+
+        <section class="editor" id="editor" aria-label="Audio editor">
+            <h2>✂️ Audio Editor</h2>
+
+            <div class="file-info">
+                <div class="file-icon" aria-hidden="true">♫</div>
+                <div class="file-details">
+                    <span class="file-name" id="fileName">Your audio file</span>
+                    <span class="file-size" id="fileSize">Ready to edit</span>
+                </div>
+            </div>
+
+            <audio id="audioPlayer" class="audio-player" controls preload="metadata">
+                Your browser does not support audio playback.
+            </audio>
+
+            <div class="time-controls">
+                <div class="time-control">
+                    <label for="startTime">Start time (seconds)</label>
+                    <input
+                        type="number"
+                        id="startTime"
+                        min="0"
+                        step="0.1"
+                        value="0"
+                        inputmode="decimal"
+                    >
                 </div>
 
-                <h2>
-                    Upload Your Audio
-                </h2>
+                <div class="time-control">
+                    <label for="endTime">End time (seconds)</label>
+                    <input
+                        type="number"
+                        id="endTime"
+                        min="0"
+                        step="0.1"
+                        value="0"
+                        inputmode="decimal"
+                    >
+                </div>
+            </div>
 
-                <p>
-                    Drag & drop your audio file here
-                </p>
+            <div class="duration-info">
+                <span>Selected audio duration</span>
+                <strong id="selectedDuration">0:00</strong>
+            </div>
 
-                <span class="or-text">
-                    or
-                </span>
-
-                <button id="chooseButton" class="choose-button">
-                    Choose Audio File
+            <div class="action-buttons">
+                <button type="button" id="cutButton" class="cut-button">
+                    ✂️ &nbsp; Cut &amp; Download
                 </button>
-
-                <input
-                    type="file"
-                    id="audioFile"
-                    accept="audio/*"
-                    hidden
-                >
-
-                <small>
-                    MP3, WAV, M4A and other audio formats
-                </small>
-
+                <button type="button" id="resetButton" class="reset-button">
+                    ↺ &nbsp; Reset Editor
+                </button>
             </div>
 
-
-            <div class="editor" id="editor">
-
-                <div class="file-info">
-
-                    <div class="file-icon">
-                        🎵
-                    </div>
-
-                    <div>
-                        <h3 id="fileName">
-                            Audio File
-                        </h3>
-
-                        <p id="fileSize">
-                            0 MB
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="audio-player">
-
-                    <audio
-                        id="audioPlayer"
-                        controls
-                    ></audio>
-
-                </div>
-
-
-                <div class="time-controls">
-
-                    <div class="time-control">
-
-                        <label for="startTime">
-                            Start Time
-                        </label>
-
-                        <input
-                            type="number"
-                            id="startTime"
-                            value="0"
-                            min="0"
-                            step="0.1"
-                        >
-
-                    </div>
-
-
-                    <div class="time-control">
-
-                        <label for="endTime">
-                            End Time
-                        </label>
-
-                        <input
-                            type="number"
-                            id="endTime"
-                            value="0"
-                            min="0"
-                            step="0.1"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="duration-info">
-
-                    <span>
-                        Selected Range
-                    </span>
-
-                    <strong id="selectedDuration">
-                        0 seconds
-                    </strong>
-
-                </div>
-
-
-                <div class="action-buttons">
-
-                    <button
-                        id="cutButton"
-                        class="cut-button"
-                    >
-                        ✂️ Cut Audio
-                    </button>
-
-                    <button
-                        id="resetButton"
-                        class="reset-button"
-                    >
-                        Reset
-                    </button>
-
-                </div>
-
-
-                <div
-                    id="statusMessage"
-                    class="status-message"
-                >
-                </div>
-
+            <div
+                class="status-message"
+                id="statusMessage"
+                role="status"
+                aria-live="polite"
+            >
+                Upload an audio file to get started.
             </div>
+        </section>
 
+        <section class="grid" aria-label="Features">
+            <article class="card">
+                <div class="card-icon" aria-hidden="true">✂️</div>
+                <h3>Precise Trimming</h3>
+                <p>Choose the start and end points to select the audio you need.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon" aria-hidden="true">⚡</div>
+                <h3>Simple &amp; Fast</h3>
+                <p>Work directly in your browser without installing an application.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon" aria-hidden="true">⬇️</div>
+                <h3>Easy Download</h3>
+                <p>Download your trimmed audio when processing is complete.</p>
+            </article>
         </section>
 
     </main>
 
-
     <footer class="footer">
-
-        <p>
-            © 2026 Audio Cutter. Cut your audio easily online.
-        </p>
-
+        Made with care by <strong>Sibghat Audio Lab</strong> · Free online audio tools
     </footer>
 
-
     <script src="js/app.js"></script>
-
 </body>
 </html>
